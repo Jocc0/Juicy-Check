@@ -5,10 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: juicycheck-api
+    container_name: jomicheluto-juicycheck-api
     restart: always
     ports:
-      - '1738:3000'
+      - ${PORT}:${PORT}
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
@@ -18,7 +18,7 @@ services:
 
   db:
     image: postgres:16-alpine
-    container_name: juicycheck-postgres
+    container_name: jomicheluto-juicycheck-postgres
     restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -36,4 +36,7 @@ services:
       start_period: 10s
 
 volumes:
-  juicycheck_pgdata:
+  juicycheck_pgdata: null
+networks:
+  dokploy-network:
+    external: true

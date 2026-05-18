@@ -8,7 +8,7 @@ services:
     container_name: jomicheluto-juicycheck-api
     restart: always
     ports:
-      - '1738:3000'
+      - '1738:1738'
     env_file:
       - .env
     environment:
